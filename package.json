@@ -1,0 +1,14 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "task1": "nodemon HomeWork1/HomeWork1.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "process": "^0.11.10"
+  }
+}
