@@ -1,21 +1,19 @@
 const csvtojson = require("csvtojson");
 const fs = require("fs");
+const stream = require("stream");
 
 const { createReadStream, createWriteStream } = fs;
+const { pipeline } = stream;
 
-const readStream = createReadStream("HomeWork1_2/csv/example.csv");
-const writeStream = createWriteStream("HomeWork1_2/result.txt");
-const transformStream = csvtojson({
-  trim: true,
-  delimiter: [";", ","],
-});
-
-const errorHandler = (err) => {
-  console.error(err);
-};
-
-readStream.on("error", errorHandler);
-writeStream.on("error", errorHandler);
-transformStream.on("error", errorHandler);
-
-readStream.pipe(transformStream).pipe(writeStream);
+pipeline(
+  [
+    createReadStream("HomeWork1_2/csv/example.csv"),
+    csvtojson({ trim: true, delimiter: [";", ","] }),
+    createWriteStream("HomeWork1_2/result.txt"),
+  ],
+  (err) => {
+    if (err) {
+      console.error(err);
+    }
+  }
+);
