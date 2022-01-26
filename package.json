@@ -2,10 +2,10 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "task1": "nodemon HomeWork1/HomeWork1.js",
-    "task2": "nodemon HomeWork1_2/HomeWork1_2.js"
+    "task1": "nodemon HomeWork1_1/reverseText.js",
+    "task2": "nodemon HomeWork1_2/CSVtoJSON.js"
   },
   "author": "",
   "license": "ISC",

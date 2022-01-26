@@ -1,11 +1,11 @@
-const process = require('process');
+import {stdin, stdout} from 'process';
 
-const {stdin, stdout} = process;
-function revert (str) {
+function reverse (str) {
     return str.split('').reverse().join('').trim();
 }
 
 stdin.setEncoding('utf-8');
+
 stdin.on('data', (data) => {
-    stdout.write(`${revert(data)}\n\n`);
+    stdout.write(`${reverse(data)}\n\n`);
 });
