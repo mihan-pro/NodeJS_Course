@@ -1,6 +1,6 @@
-import {stdin, stdout} from 'process';
+import { stdin, stdout } from 'process';
 
-function reverse (str) {
+function reverse(str) {
     return str.split('').reverse().join('').trim();
 }
 
