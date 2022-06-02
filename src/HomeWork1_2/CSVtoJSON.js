@@ -1,13 +1,13 @@
 import csv from 'csvtojson';
 import { createReadStream, createWriteStream } from 'fs';
 import { pipeline } from 'stream';
-import { resolve } from 'path';
+import { resolve, dirname } from 'path';
 
 pipeline(
     [
-        createReadStream(resolve('./csv/example.csv')),
+        createReadStream(resolve(`${__dirname}/csv/example.csv`)),
         csv({ trim: true, delimiter: [';', ','] }),
-        createWriteStream('HomeWork1_2/result.txt')
+        createWriteStream(`${__dirname}/result.txt`)
     ],
     (err) => {
         if (err) {

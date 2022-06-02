@@ -2,11 +2,10 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "scripts": {
     "build": "npx babel src -d dist -D -x \".js,.ts\" --compact true -w ",
-    "task1": "nodemon dist/HomeWork1_1/reverseText.js",
-    "task2": "nodemon dist/HomeWork1_2/CSVtoJSON.js"
+    "task1": "npx nodemon dist/HomeWork1_1/reverseText.js",
+    "task2": "npx nodemon dist/HomeWork1_2/CSVtoJSON.js"
   },
   "author": "",
   "license": "ISC",
