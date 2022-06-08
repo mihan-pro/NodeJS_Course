@@ -4,14 +4,19 @@
   "description": "",
   "scripts": {
     "build": "npx babel src -d dist -D -x \".js,.ts\" --compact true -w ",
-    "task1": "npx nodemon dist/HomeWork1_1/reverseText.js",
-    "task2": "npx nodemon dist/HomeWork1_2/CSVtoJSON.js"
+    "task1_1": "npx nodemon dist/HomeWork1_1/reverseText.js",
+    "task1_2": "npx nodemon dist/HomeWork1_2/CSVtoJSON.js",
+    "task_2": "npx nodemon dist/HomeWork_2/main.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/uuid": "^8.3.4",
     "csvtojson": "^2.0.10",
-    "process": "^0.11.10"
+    "express": "^4.18.1",
+    "joi": "^17.6.0",
+    "process": "^0.11.10",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.3",
@@ -19,6 +24,8 @@
     "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.38",
     "@typescript-eslint/parser": "^5.12.0",
     "babel-loader": "^8.2.3",
     "eslint": "^8.9.0",
