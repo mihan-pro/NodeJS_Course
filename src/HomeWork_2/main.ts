@@ -1,4 +1,5 @@
 import express from 'express';
+import Joi from 'joi';
 import { v4 as createId } from 'uuid';
 
 const port = 3000;
@@ -16,7 +17,7 @@ type User = {
 
 const createUser = (login: string, pass: string, age: number): User => {
   if (!login || !pass || !age) {
-    throw new Error('There is lack of params');
+    throw new Error('There is a lack of params');
   }
   return {
     login,
@@ -29,13 +30,24 @@ const createUser = (login: string, pass: string, age: number): User => {
 
 const userList: User[] = [];
 
-server.get('/', (req, res) => {
-  res.end(JSON.stringify(userList));
+const schema = Joi.object({
+  login: Joi.string().min(3).required(),
+  password: Joi.string().min(8).pattern(/^(?=.*[a-zA-Z])(?=.*\d)/).required(),
+  age: Joi.number().min(4).max(130).required()
 });
 
+server.get('/getAllUsers', (req, res) => {
+  res.end(JSON.stringify(userList));
+});
 server.post('/create', (req, res) => {
   try {
     const { login, password, age } = req.body;
+    const { error } = schema.validate(req.body);
+    if (error) {
+      res.status(400);
+      res.end(JSON.stringify(error.message, null, 2));
+      return;
+    }
     userList.push(createUser(login, password, age));
     res.status(200);
     res.end('ok');
@@ -57,6 +69,12 @@ server.get('/getUser/:id', (req, res) => {
 server.patch('/updateUser/:id', (req, res) => {
   try {
     const { id } = req.params;
+    const { error } = schema.validate(req.body);
+    if (error) {
+      res.status(400);
+      res.end(JSON.stringify(error.message, null, 2));
+      return;
+    }
     const userIndex = userList.findIndex((item) => item.id === id);
     if (userIndex >= 0) {
       req.body.age && (userList[userIndex].age = req.body.age);
