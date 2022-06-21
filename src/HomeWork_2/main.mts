@@ -1,32 +1,51 @@
 import express from 'express';
 import Joi from 'joi';
-import { v4 as createId } from 'uuid';
+import { createUser } from './helpers/createUser';
+import { User } from './types';
+import {Client} from 'pg';
+
+const usersMock: User[] = [
+  createUser('Mikhai', 'pass', 26),
+  createUser('Yuriy', 'pass22', 26),
+  createUser('Dmitro', 'pa2124ss', 26),
+  createUser('Gypsy', 'horse212', 26),
+  createUser('Adam', 'querty', 26),
+  createUser('nagibator', 'pqdassq', 26),
+  createUser('Olly', 'pawerts', 26),
+  createUser('Zizu', '1231dev', 26),
+  createUser('Aziz', 'pasqwdq__1s', 26),
+];
+
+const client =  new Client({
+  port: 5432,
+  host: 'localhost',
+  database: 'postgres',
+  user: 'postgres',
+});
+
+client.connect()
+  .then(res => console.log('success'))
+  .catch(err => console.log("err"));
+
+client.query("CREATE TABLE IF NOT EXISTS Users(id UUID, login TEXT, password TEXT, age INTEGER, isDeleted BOOL)")
+  .then(() => console.log('Users table is ready to use'))
+  .catch(err => console.log(err));
+
+client.query("DELETE FROM Users")
+  .then(() => console.log("Users table was cleared"))
+  .catch((err => console.log(err)
+));
+
+usersMock.forEach(({id, login, password, age, isDeleted}) => {
+  client.query("INSERT INTO Users (id, login, password, age, isDeleted) VALUES ($1, $2, $3, $4, $5)", [id, login, password, age, isDeleted])
+    .then(() => console.log(`User: ${login} was successfuly added`))
+    .catch((err) => console.log(err));
+})
 
 const port = 3000;
 const server = express();
 
 server.use(express.json());
-
-type User = {
-  id: string;
-  login: string;
-  password: string;
-  age: number;
-  isDeleted: boolean;
-};
-
-const createUser = (login: string, pass: string, age: number): User => {
-  if (!login || !pass || !age) {
-    throw new Error('There is a lack of params');
-  }
-  return {
-    login,
-    password: pass,
-    age,
-    id: createId(),
-    isDeleted: false
-  };
-};
 
 const userList: User[] = [];
 
