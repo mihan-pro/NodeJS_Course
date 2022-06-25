@@ -5,3 +5,9 @@ export type User = {
   age: number;
   is_deleted: boolean;
 };
+
+export type UserRequestData = {
+  login: string;
+  password: string;
+  age: number;
+}

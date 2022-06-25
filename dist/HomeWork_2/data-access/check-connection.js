@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.checkConnection=void 0;const checkConnection=client=>{client.authenticate().then(()=>console.log('connection is alive')).catch(()=>console.log('something went wrong'));};exports.checkConnection=checkConnection;

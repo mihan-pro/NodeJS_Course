@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.getUser=void 0;const getUser=(usersModel,id)=>{try{return usersModel.findOne({where:{id}});}catch(err){console.log(err);throw err;}};exports.getUser=getUser;
