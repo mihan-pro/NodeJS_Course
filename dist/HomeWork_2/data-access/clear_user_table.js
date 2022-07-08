@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.clearUserTable=void 0;const clearUserTable=client=>{client.query('DELETE FROM Users').then(()=>console.log('Users table was cleared')).catch(err=>console.log(err));};exports.clearUserTable=clearUserTable;

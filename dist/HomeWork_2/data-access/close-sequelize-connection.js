@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.closeSequelizeConnection=void 0;const closeSequelizeConnection=client=>{client.close().then(()=>console.log('connection was closed')).catch(()=>console.log('everything is on fire'));};exports.closeSequelizeConnection=closeSequelizeConnection;

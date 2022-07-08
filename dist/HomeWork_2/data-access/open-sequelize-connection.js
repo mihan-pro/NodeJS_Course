@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.openSequelizeConnection=void 0;var _sequelize=require("sequelize");const openSequelizeConnection=()=>{return new _sequelize.Sequelize('postgres://localhost:5432/postgres');};exports.openSequelizeConnection=openSequelizeConnection;

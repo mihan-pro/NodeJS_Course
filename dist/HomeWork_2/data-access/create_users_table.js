@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.createUsersTable=void 0;const createUsersTable=client=>{client.query('CREATE TABLE IF NOT EXISTS Users(id UUID, login TEXT, password TEXT, age INTEGER, is_deleted BOOL)').then(()=>console.log('Users table is ready to use')).catch(err=>console.log(err));};exports.createUsersTable=createUsersTable;
