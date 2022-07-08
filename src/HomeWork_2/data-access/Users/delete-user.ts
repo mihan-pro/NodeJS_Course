@@ -1,4 +1,4 @@
-import { Model, ModelCtor } from "sequelize";
+import { Model, ModelCtor } from 'sequelize';
 
 export const deleteUser = async (usersModel: ModelCtor<Model<any, any>>, id: string) => {
   try {

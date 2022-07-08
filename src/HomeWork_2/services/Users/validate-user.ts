@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { User } from '../types';
+import { User } from '../../models/users';
 
 const schema = Joi.object({
   login: Joi.string().min(3).required(),

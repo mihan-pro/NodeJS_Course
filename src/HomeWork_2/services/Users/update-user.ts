@@ -1,7 +1,7 @@
 import { validateUser } from './validate-user';
-import { UserRequestData } from '../types';
-import { Users } from '../main';
-import { updateUser } from '../data-access/update-user';
+import { UserRequestData } from '../../models/users';
+import { Users } from '../../main';
+import { updateUser } from '../../data-access/Users/update-user';
 
 export const updateUserService = async (id: string, data: UserRequestData) => {
   const { error } = validateUser(data);

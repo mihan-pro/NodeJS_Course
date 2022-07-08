@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "check-types": "tsc --noEmit",
     "build": "npx babel src -d dist -D -x \".js,.ts,.mts\" --compact true -w ",
     "task1_1": "npx nodemon dist/HomeWork1_1/reverseText.js",
     "task1_2": "npx nodemon dist/HomeWork1_2/CSVtoJSON.js",

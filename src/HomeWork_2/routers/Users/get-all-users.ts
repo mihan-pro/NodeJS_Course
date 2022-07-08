@@ -1,4 +1,4 @@
-import { getAllUsers } from '../../data-access/get-all-users';
+import { getAllUsers } from '../../data-access/Users/get-all-users';
 import { Users } from '../../main.js';
 import { Router } from 'express';
 export { Router } from 'express';

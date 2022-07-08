@@ -1,5 +1,5 @@
 import { Client } from 'pg';
-import { User } from '../types';
+import { User } from '../../models/users';
 
 export const insertListOfUsers = (client: Client, users: User[]) => {
   users.forEach(({ id, login, password, age, is_deleted }) => {
