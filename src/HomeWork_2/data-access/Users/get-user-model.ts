@@ -15,7 +15,7 @@ const userModel = {
     allowNull: false
   },
   age: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   is_deleted: {

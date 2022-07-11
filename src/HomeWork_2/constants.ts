@@ -3,7 +3,8 @@ import { createUser } from './services/Users/createUser';
 
 export const ROUTES = {
   USERS: '/users',
-  GROUPS: '/groups'
+  GROUPS: '/groups',
+  USER_GROUPS: '/user-groups'
 };
 
 export const usersMock: User[] = [

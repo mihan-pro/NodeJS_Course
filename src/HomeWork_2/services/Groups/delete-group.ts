@@ -1,5 +1,5 @@
 import { deleteGroup } from '../../data-access/Groups/delete-group';
 
-export const deleteGroupService = (id: string) => {
-  return deleteGroup(id);
+export const deleteGroupService = async (id: string) => {
+  return await deleteGroup(id);
 };

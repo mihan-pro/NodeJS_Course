@@ -1,8 +1,8 @@
-import { Model, ModelCtor } from 'sequelize';
+import { Users } from '../../main';
 
-export const deleteUser = async (usersModel: ModelCtor<Model<any, any>>, id: string) => {
+export const deleteUser = async (id: string) => {
   try {
-    return await usersModel.destroy({
+    return await Users.destroy({
       where: { id }
     });
   } catch (err) {
