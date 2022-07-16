@@ -1,6 +1,6 @@
 import { Model, ModelCtor } from 'sequelize';
-import { UserRequestData } from '../types';
-import { createUser } from '../helpers/createUser';
+import { UserRequestData } from '../../models/users';
+import { createUser } from '../../services/Users/createUser';
 
 export const createUserInDB = async (usersModel: ModelCtor<Model<any, any>>, { login, password, age }: UserRequestData) => {
   const userData = createUser(login, password, age);

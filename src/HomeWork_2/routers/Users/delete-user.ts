@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { deleteUserService } from '../../services/delete-user';
+import { deleteUserService } from '../../services/Users/delete-user';
 
 export const deleteUserRouter = Router();
 

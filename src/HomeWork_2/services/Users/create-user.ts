@@ -1,7 +1,7 @@
-import { UserRequestData } from '../types';
+import { UserRequestData } from '../../models/users';
 import { validateUser } from './validate-user';
-import { createUserInDB } from '../data-access/create-user';
-import { Users } from '../main';
+import { createUserInDB } from '../../data-access/Users/create-user';
+import { Users } from '../../main';
 
 
 export const createUser = async (data: UserRequestData) => {

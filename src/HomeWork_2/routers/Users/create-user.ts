@@ -1,4 +1,4 @@
-import { createUser } from '../../services/create-user';
+import { createUser } from '../../services/Users/create-user';
 import { Router } from 'express';
 
 export const createUserRouter = Router();

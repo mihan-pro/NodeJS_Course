@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { updateUserService } from '../../services/update-user';
+import { updateUserService } from '../../services/Users/update-user';
 
 export const updateUserRouter = Router();
 
-updateUserRouter.patch(':id', async (req, res) => {
+updateUserRouter.patch('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const { body } =  req;

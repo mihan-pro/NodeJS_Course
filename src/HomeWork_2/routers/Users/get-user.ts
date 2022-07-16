@@ -1,4 +1,4 @@
-import { getUserService } from '../../services/get-user';
+import { getUserService } from '../../services/Users/get-user';
 import { Router } from 'express';
 
 export const getUserRouter = Router();
