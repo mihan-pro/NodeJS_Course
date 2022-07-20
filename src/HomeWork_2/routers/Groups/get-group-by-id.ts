@@ -1,16 +1,17 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { getGroupByIdService } from '../../services/Groups/get-group-by-id';
+import { logRequestData } from '../../helpers/log-request-data';
 
-export const getGroupByIdHandler = async ({ params }: Request, res: Response) => {
+export const getGroupByIdHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = await getGroupByIdService(params.id);
+    const result = await getGroupByIdService(req.params.id);
     if (result) {
       res.status(200).end(JSON.stringify(result));
     } else {
       res.status(404).end();
     }
   } catch (err) {
-    console.error(err);
-    res.status(500).end();
+    logRequestData(req, true);
+    next(err);
   }
 };

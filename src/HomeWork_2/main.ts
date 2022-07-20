@@ -10,7 +10,9 @@ import { ROUTES } from './constants';
 import { getGroupsModel } from './data-access/Groups/get-group-model';
 import { getUserGroupModel } from './data-access/UserGroup/create-user-group-model';
 import { UserGroupRouter } from './routers/UserGroup';
-import { logServiceRequest } from './middlewares/logServiceRequest';
+import { logServiceRequest } from './middlewares/log-service-request';
+import { errorHandler } from './services/error-logger';
+import { logError } from './middlewares/log-error';
 
 dotenv.config();
 const server = express();
@@ -27,9 +29,13 @@ server
   .use(logServiceRequest)
   .use(ROUTES.USERS, UsersRouter)
   .use(ROUTES.GROUPS, GroupsRouter)
-  .use(ROUTES.USER_GROUPS, UserGroupRouter);
+  .use(ROUTES.USER_GROUPS, UserGroupRouter)
+  .use(logError);
 
 server.listen(process.env.PORT, () => {
   initApp();
   console.log(`Server started on port ${process.env.PORT}`);
 });
+
+process.on('uncaughtException', errorHandler);
+process.on('unhandledRejection', errorHandler);

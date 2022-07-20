@@ -1,12 +1,13 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { addUserToGroupService } from '../../services/UserGroup/add-user-to-group';
+import { logRequestData } from '../../helpers/log-request-data';
 
-export const addUserToGroupHandler = async ({ body }: Request, res: Response) => {
+export const addUserToGroupHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    await addUserToGroupService(body.groupId, body.userId);
+    await addUserToGroupService(req.body.groupId, req.body.userId);
     res.status(200).end();
   } catch (err) {
-    console.error(err);
-    res.status(500).end();
+    logRequestData(req, true);
+    next(err);
   }
 };

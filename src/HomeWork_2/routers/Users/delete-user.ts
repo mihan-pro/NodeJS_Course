@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import { deleteUserService } from '../../services/Users/delete-user';
+import { logRequestData } from '../../helpers/log-request-data';
 
 export const deleteUserRouter = Router();
 
-deleteUserRouter.delete('/:id', async (req, res) => {
+deleteUserRouter.delete('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
     const result = await deleteUserService(id);
@@ -15,7 +16,7 @@ deleteUserRouter.delete('/:id', async (req, res) => {
       res.end('The user hadn\'t been found');
     }
   } catch (err) {
-    res.status(500);
-    res.end(err);
+    logRequestData(req, true);
+    next(err);
   }
 });

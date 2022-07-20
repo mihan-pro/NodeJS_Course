@@ -1,15 +1,17 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { deleteGroupService } from '../../services/Groups/delete-group';
+import { logRequestData } from '../../helpers/log-request-data';
 
-export const deleteGroupHandler = async ({ params }: Request, res: Response) => {
+export const deleteGroupHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = await deleteGroupService(params?.id ?? '');
+    const result = await deleteGroupService(req.params?.id ?? '');
     if (result) {
       res.status(200).end();
     } else {
       res.status(404).end();
     }
   } catch (err) {
-    res.status(500).end(err.toString());
+    logRequestData(req, true);
+    next(err);
   }
 };
