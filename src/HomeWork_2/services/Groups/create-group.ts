@@ -2,11 +2,5 @@ import { GroupPermissions } from '../../models/groups';
 import { createGroup } from '../../data-access/Groups/create-group';
 
 export const createGroupService = async (name: string, permissions: GroupPermissions[]) => {
-  try {
-    await createGroup(name, permissions);
-    return true;
-  } catch (err) {
-    console.error(err);
-    return false;
-  }
+  return await createGroup(name, permissions);
 };

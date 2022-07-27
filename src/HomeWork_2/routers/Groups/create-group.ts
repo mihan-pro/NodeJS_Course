@@ -1,12 +1,14 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { createGroupService } from '../../services/Groups/create-group';
+import { logRequestData } from '../../helpers/log-request-data';
 
-export const createUserHandler = async ({ body }: Request, res: Response) => {
+export const createUserHandler = async (req: Request, res: Response, next: NextFunction) => {
   // TODO - add parameters validation
-  const result = await createGroupService(body.name, JSON.parse(body.permissions));
-  if (result) {
+  try {
+    await createGroupService(req.body.name, JSON.parse(req.body.permissions));
     res.status(200).end();
-  } else {
-    res.status(500).end();
+  } catch (err) {
+    logRequestData(req, true);
+    next(err);
   }
 };

@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import { updateUserService } from '../../services/Users/update-user';
+import { logRequestData } from '../../helpers/log-request-data';
 
 export const updateUserRouter = Router();
 
-updateUserRouter.patch('/:id', async (req, res) => {
+updateUserRouter.patch('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
     const { body } =  req;
@@ -13,11 +14,9 @@ updateUserRouter.patch('/:id', async (req, res) => {
       res.end(error.message);
       return;
     }
-    res.status(200);
-    res.send('ok');
-    res.end();
+    res.status(200).end('ok');
   } catch (err) {
-    res.status(500);
-    res.end(err);
+    logRequestData(req, true);
+    next(err);
   }
 });

@@ -1,8 +1,9 @@
 import { createUser } from '../../services/Users/create-user';
 import { Router } from 'express';
+import { logRequestData } from '../../helpers/log-request-data';
 
 export const createUserRouter = Router();
-createUserRouter.post('/', async (req, res) => {
+createUserRouter.post('/', async (req, res, next) => {
   try {
     const error = await createUser(req.body);
     if (error) {
@@ -10,10 +11,9 @@ createUserRouter.post('/', async (req, res) => {
       res.end(error.message);
       return;
     }
-    res.status(200);
-    res.end('ok');
+    res.status(200).end('ok');
   } catch (err) {
-    res.status(500);
-    res.end(err);
+    logRequestData(req, true);
+    next(err);
   }
 });
