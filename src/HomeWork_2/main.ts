@@ -13,6 +13,8 @@ import { UserGroupRouter } from './routers/UserGroup';
 import { logServiceRequest } from './middlewares/log-service-request';
 import { errorHandler } from './services/error-logger';
 import { logError } from './middlewares/log-error';
+import { LoginRouter } from './routers/login';
+import { checkAuthorisation } from './middlewares/check-authorisation';
 
 dotenv.config();
 const server = express();
@@ -27,9 +29,10 @@ checkConnection(sequelize);
 server
   .use(express.json())
   .use(logServiceRequest)
-  .use(ROUTES.USERS, UsersRouter)
-  .use(ROUTES.GROUPS, GroupsRouter)
-  .use(ROUTES.USER_GROUPS, UserGroupRouter)
+  .use(ROUTES.LOGIN, LoginRouter)
+  .use(ROUTES.USERS, checkAuthorisation, UsersRouter)
+  .use(ROUTES.GROUPS, checkAuthorisation, GroupsRouter)
+  .use(ROUTES.USER_GROUPS, checkAuthorisation, UserGroupRouter)
   .use(logError);
 
 server.listen(process.env.PORT, () => {
