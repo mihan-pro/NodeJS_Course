@@ -15,6 +15,7 @@ import { errorHandler } from './services/error-logger';
 import { logError } from './middlewares/log-error';
 import { LoginRouter } from './routers/login';
 import { checkAuthorisation } from './middlewares/check-authorisation';
+import cors from 'cors/lib/index';
 
 dotenv.config();
 const server = express();
@@ -28,6 +29,7 @@ checkConnection(sequelize);
 
 server
   .use(express.json())
+  .use(cors({ origin: 'https://www.facebook.com' }))
   .use(logServiceRequest)
   .use(ROUTES.LOGIN, LoginRouter)
   .use(ROUTES.USERS, checkAuthorisation, UsersRouter)

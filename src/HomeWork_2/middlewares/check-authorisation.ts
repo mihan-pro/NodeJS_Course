@@ -4,13 +4,13 @@ import { createSecretKey } from 'crypto';
 
 export const checkAuthorisation = async ({ headers }: Request, res: Response, next: NextFunction) => {
   if (!headers.authorization) {
-    res.status(401).end();
+    res.sendStatus(401);
     return;
   }
   try {
     await jwtVerify(headers.authorization, await createSecretKey(process.env.SECRET, 'utf-8'));
   } catch (err) {
-    res.status(403).end();
+    res.sendStatus(403);
     return;
   }
   next();
