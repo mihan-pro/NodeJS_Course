@@ -1,6 +1,5 @@
-import { Model, ModelCtor } from 'sequelize';
+import { Users } from '../../main';
 
-export const getAllUsers = async (usersModel: ModelCtor<Model<any, any>>) => {
-  const users = await usersModel.findAll();
-  return JSON.stringify(users);
+export const getAllUsers = async () => {
+  return await Users.findAll({ raw: true });
 };
