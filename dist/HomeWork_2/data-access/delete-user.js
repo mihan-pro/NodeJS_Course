@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.deleteUser=void 0;const deleteUser=async(usersModel,id)=>{try{return await usersModel.destroy({where:{id}});}catch(err){console.log(err);throw err;}};exports.deleteUser=deleteUser;

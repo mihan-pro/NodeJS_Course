@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.connectToDatabase=void 0;const connectToDatabase=client=>{client.connect().then(()=>console.log('success')).catch(err=>console.log(err));};exports.connectToDatabase=connectToDatabase;

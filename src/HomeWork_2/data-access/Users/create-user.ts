@@ -1,9 +1,9 @@
 import { Model, ModelCtor } from 'sequelize';
 import { UserRequestData } from '../../models/users';
-import { createUser } from '../../services/Users/createUser';
+import { createUserEntity } from '../../services/Users/create-user-entity';
 
 export const createUserInDB = async (usersModel: ModelCtor<Model<any, any>>, { login, password, age }: UserRequestData) => {
-  const userData = createUser(login, password, age);
+  const userData = createUserEntity(login, password, age);
   try {
     await usersModel.create(userData);
   } catch (err) {

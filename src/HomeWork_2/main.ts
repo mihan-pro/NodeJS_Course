@@ -1,8 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { openSequelizeConnection } from './data-access/open-sequelize-connection';
-import { checkConnection } from './data-access/check-connection';
-import { initApp } from './services/init-app';
 import { getUserModel } from './data-access/Users/get-user-model';
 import { UsersRouter } from './routers/Users';
 import { GroupsRouter } from './routers/Groups';
@@ -18,29 +16,22 @@ import { checkAuthorisation } from './middlewares/check-authorisation';
 import cors from 'cors/lib/index';
 
 dotenv.config();
-const server = express();
+export const server = express();
 
 export const sequelize = openSequelizeConnection();
 export const Users = getUserModel(sequelize);
 export const Groups = getGroupsModel(sequelize);
 export const UserGroups = getUserGroupModel(sequelize);
 
-checkConnection(sequelize);
-
 server
   .use(express.json())
-  .use(cors({ origin: 'https://www.facebook.com' }))
+  .use(cors({ origin: process.env.CORS_ADDRESS }))
   .use(logServiceRequest)
   .use(ROUTES.LOGIN, LoginRouter)
   .use(ROUTES.USERS, checkAuthorisation, UsersRouter)
   .use(ROUTES.GROUPS, checkAuthorisation, GroupsRouter)
   .use(ROUTES.USER_GROUPS, checkAuthorisation, UserGroupRouter)
   .use(logError);
-
-server.listen(process.env.PORT, () => {
-  initApp();
-  console.log(`Server started on port ${process.env.PORT}`);
-});
 
 process.on('uncaughtException', errorHandler);
 process.on('unhandledRejection', errorHandler);

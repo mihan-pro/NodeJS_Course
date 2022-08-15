@@ -1,5 +1,5 @@
 import { User } from './models/users';
-import { createUser } from './services/Users/createUser';
+import { createUserEntity } from './services/Users/create-user-entity';
 
 export const ROUTES = {
   USERS: '/users',
@@ -9,13 +9,13 @@ export const ROUTES = {
 };
 
 export const usersMock: User[] = [
-  createUser('Mikhai', 'pass', 26),
-  createUser('Yuriy', 'pass22', 26),
-  createUser('Dmitro', 'pa2124ss', 26),
-  createUser('Gypsy', 'horse212', 26),
-  createUser('Adam', 'querty', 26),
-  createUser('nagibator', 'pqdassq', 26),
-  createUser('Olly', 'pawerts', 26),
-  createUser('Zizu', '1231dev', 26),
-  createUser('Aziz', 'pasqwdq__1s', 26)
+  createUserEntity('Mikhai', 'pass', 26),
+  createUserEntity('Yuriy', 'pass22', 26),
+  createUserEntity('Dmitro', 'pa2124ss', 26),
+  createUserEntity('Gypsy', 'horse212', 26),
+  createUserEntity('Adam', 'querty', 26),
+  createUserEntity('nagibator', 'pqdassq', 26),
+  createUserEntity('Olly', 'pawerts', 26),
+  createUserEntity('Zizu', '1231dev', 26),
+  createUserEntity('Aziz', 'pasqwdq__1s', 26)
 ];

@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.updateUser=void 0;const updateUser=async(usersModel,id,{login,password,age})=>{try{const result=await usersModel.update({login,password,age},{where:{id}});return result[0];}catch(err){console.log(err);throw err;}};exports.updateUser=updateUser;

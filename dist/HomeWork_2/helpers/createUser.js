@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.createUser=void 0;var _uuid=require("uuid");const createUser=(login,pass,age)=>{if(!login||!pass||!age){throw new Error('There is a lack of params');}return{login,password:pass,age,id:(0,_uuid.v4)(),is_deleted:false};};exports.createUser=createUser;
