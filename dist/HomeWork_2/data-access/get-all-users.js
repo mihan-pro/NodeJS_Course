@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.getAllUsers=void 0;const getAllUsers=async usersModel=>{const users=await usersModel.findAll();return JSON.stringify(users);};exports.getAllUsers=getAllUsers;
